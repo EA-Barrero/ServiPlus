@@ -1,0 +1,96 @@
+#Recuerda instalar la extensión de "mongodb"
+    1. conectar con mongo
+
+#creación pagkage json
+    npm init
+
+#Librerías obligatorias 
+    npm i cors   ---> Para permitir acceso a alguna persona al backend
+    npm i morgan --->Permite capturar peticiones del frondend
+    npm i express ---> Montar todo el backend
+    npm i mongoose ---> permite conectarse desde el backend a mongo
+    npm i bcryptjs---->Para cifrar la clave
+    npm i jsonwebtoken--->Entrega un token valido
+
+    npm i dotenv --save-dev --->Instala la libreria para poderla usar solo para el desarrollo
+    npm i nodemon --save-dev--->Permite ejecutar el backend
+
+#Después de instalar las librerías se usan estas paa que el desarrollo sea mas facíl
+    npm i @types/cors --save-dev--->Usar mas facíl el corse
+    npm i @types/morgan --save-dev--->Permite ver en la consolo los registros del froned de una forma bonita
+    npm i @types/express --save-dev--->Permte usar la librería express
+    npm i @types/jsonwebtoken --save-dev
+    
+#Instalar Typescript
+    npm i -g typescript
+    
+#cómo configurar la powerShell para dar permiso al typescript
+    get-executionpolicy
+    set-executionpolicy unrestricted
+
+#Cómo incluir Typescript en mi proyecto
+    tsc --init---> iniciar ts
+
+#Para desinstalar librerias
+    npm i (nombre de los que instalaste)
+
+#Recordar configurar tsconfig.json (Separar código fuente)
+    1. Ingresar al archivo tsconfig.json
+    2. Buscar con ctrl+f la palabra "outDir"
+    3. Editarla y dejarla así "outDir": "./build", --->Descomentando y creando la carperta build  
+
+#Recuerda instalar la extensión de "dotenv"
+    1. para que los atchivos se vean bonitos
+
+#Configurar Scripts de ejecución package json 
+    "dev": "nodemon build/index.js",
+    "build": "tsc -w"--->Estas dos se deben pegar en la linea 7 del package.json
+
+#Estructura del backend "Cascarón de las carpetas"
+    1. Crear la carpeta Src 
+    2. Crear dentro de la carpeta src las carpetas dao (data acces, permite ingresar a los datos), entidad, configuración, controlador.
+    3. como se trabaja con mongo se deben crear esquemas, se crea carpeta esquemas que se relaciona con entidad, que se podria decir que es uno solo.
+    4. Entidad se relaciona con dao y dao con controlador.
+    5. Se crea la carpeta ruta que se relaciona con contolador.
+            ruta, controlador, dao, entidad = esquemas.
+    6. crear carpeta para las credenciales "middleware". Va ser un intermediario para recibir el token y devolverlo.
+    7. Crear el archivo index.ts en la carpeta src.
+
+#Crear 4 terminales en visual code studio en el mas
+    1. cambiar nombres a las terminales en rename "dev", "cmd", "build" y otra extra "ayy"
+    2. Cambiar color a las termianles para ser organizados.
+
+#Correr programa
+    npm run build ---> Correr build ---> ver errores  ---> Crea carperta "build" --->Esta carpeta es la que se le entrega al cliente
+    npm run dev   ---> Correr dev   ---> Ejecutar proyecto --->Lanza el backend para recibir peticiones
+nota: primero se hace el build, porque si se hace primero el dev, puede que se tengan errores
+
+#Comprobar que las librerías quedaron bien
+    1. Dentro de la carpeta config, se crea un archivo estilo java llamado "ConexionDB.ts", para conectarnos a la base de datos.
+    2. dentro del archivo se importa una librería de mongoose y se conecta import {connect} from "mongoose";.
+    3. En el archivo index.ts se importa la libreria import dotenv from "dotenv";.
+    4. crear un archivo en la raiz, es decir fuera de los programas con el nombre "variables.env".
+    5. Se coloca la palara "PORT" para indicar el puerto que se va a usar y para la coxion a la base de datos.
+    6. En el archivo index.ts, se va a cargar las variables de entorno para poder acceder a ellas. con este comando dotenv.config({path:"variables.env"});
+
+#conectar a la base de datos 
+    1. EN el archivo conexion.dev colocar dentro de la función flecha connect().then().catch();
+
+
+#Crear en la raiz el archivo "variables.env" para tener las variables de control
+    1.Crear dentro del archivo el puerto que puede ser cualquier "PORT = 3123"
+    2.Crear la clave "CLAVE_SECRETA = "esta es mi clave secreta""
+    3.Crear la coexión con la base de datos con la url del mongo DB_MONGO = "mongodb://localhost:27017/db_backendcito""
+
+#En la carpeta configuración crear el archivo "ConexionDB.ts"
+    1.Aquí importamos la conexión con la libreia mongoose.
+    2. Se hace una función flecha con la palabra reservada const y con el nombre del archivo que se acabo de crear.
+    3. se exporta para que la conexion sea publica en todo momento y el default para que sea publica. export default ConexionDB.
+    4. Dentro de la función flecha se va colocar las varibales de ambiente ya creadas, con la funcion conts url
+            const URL = String(process.env.DB_MONGO)
+            
+#Detener comando 
+    control + c
+
+
+
